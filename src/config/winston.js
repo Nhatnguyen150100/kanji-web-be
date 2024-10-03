@@ -1,7 +1,6 @@
 const winston = require("winston");
-const path = require("path");
 
-module.exports = winston.createLogger({
+const logger = winston.createLogger({
   format: winston.format.combine(
     winston.format.splat(),
     winston.format.timestamp({
@@ -21,3 +20,5 @@ module.exports = winston.createLogger({
     }),
   ],
 });
+
+export default logger;

@@ -14,17 +14,18 @@ const tokenService = {
       },
       privateKey,
       {
-        expiresIn: `${process.env.NODE_ENV === "development" ? "15m" : "10m"}`,
         algorithm: "RS512",
       }
     );
   },
   verifyToken(accessToken) {
-    jwt.verify(accessToken, publicKey, (err) => {
-      if (err) return false;
-      return true;
-    });
+    try {
+      const doctor = jwt.verify(accessToken, publicKey);
+      return doctor;
+    } catch (err) {
+      return null;
+    }
   },
 };
 
-module.exports = tokenService;
+export default tokenService;

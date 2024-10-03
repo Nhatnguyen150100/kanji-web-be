@@ -6,15 +6,14 @@ const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const connectDB = require("./config/connectDB");
-const appLogger = require("./config/winston");
+import connectDB from "./config/connectDB";
+import authRouter from "./routes/authRouter";
+const { default: loggerWinston } = require("./config/winston");
 
-connectDB();
+connectDB.connect();
 const app = express();
 
 app.use(
@@ -40,11 +39,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+/**
+ * @toto router setup
+ */
+app.use("/v1/auth", authRouter);
 
 app.listen(process.env.PORT || 3000, () => {
-  appLogger.info("server listening on port: " + (process.env.PORT || 3000));
+  loggerWinston.info("server listening on port: " + (process.env.PORT || 3000));
 });
 
 module.exports = app;

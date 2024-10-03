@@ -10,27 +10,36 @@ module.exports = {
         type: Sequelize.UUID,
       },
       username: {
+        allowNull: true,
         type: Sequelize.STRING,
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       email: {
+        allowNull: false,
+        unique: true,
         type: Sequelize.STRING,
       },
       fullName: {
-        type: Sequelize.STRING
+        allowNull: true,
+        type: Sequelize.STRING,
       },
       gender: {
-        type: Sequelize.STRING
+        allowNull: true,
+        type: Sequelize.STRING,
       },
       birthday: {
-        type: Sequelize.DATE
+        allowNull: true,
+        type: Sequelize.DATE,
       },
       phoneNumber: {
-        type: Sequelize.STRING
+        allowNull: true,
+        type: Sequelize.STRING,
       },
       role: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       createdAt: {

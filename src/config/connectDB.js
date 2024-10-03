@@ -1,6 +1,6 @@
 "use-strict";
+import logger from "./winston";
 require("dotenv").config();
-const logger = require("./winston");
 
 const { Sequelize } = require("sequelize");
 
@@ -27,13 +27,15 @@ const sequelize = new Sequelize(
   }
 );
 
-let connectDB = async () => {
-  try {
-    await sequelize.authenticate();
-    logger.info("Connection has been established successfully.");
-  } catch (error) {
-    logger.info("Unable to connect to the database:", error);
-  }
+const connectDB = {
+  connect: async () => {
+    try {
+      await sequelize.authenticate();
+      logger.info("Connection has been established successfully.");
+    } catch (error) {
+      logger.info("Unable to connect to the database:", error);
+    }
+  },
 };
 
-module.exports = connectDB;
+export default connectDB;
