@@ -1,19 +1,18 @@
-import express from "express";
-import { join } from "path";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
-import cors from "cors";
-import helmet from "helmet";
-import rateLimit from "express-rate-limit";
+const express = require("express");
+const { join } = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
-import indexRouter from "./routes/index";
-import usersRouter from "./routes/users";
-import { log } from "console";
-import dotenv from "dotenv";
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const dotenv = require("dotenv");
 dotenv.config();
 
-import connectDB from "./config/connectDB";
-import appLogger from "./config/winston";
+const connectDB = require("./config/connectDB");
+const appLogger = require("./config/winston");
 
 connectDB();
 const app = express();
@@ -45,7 +44,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 app.listen(process.env.PORT || 3000, () => {
-  appLogger.info("server listening on port: " + process.env.PORT || 3000);
+  appLogger.info("server listening on port: " + (process.env.PORT || 3000));
 });
 
-export default app;
+module.exports = app;

@@ -1,6 +1,6 @@
 "use-strict";
 require("dotenv").config();
-import logger from "./winston";
+const logger = require("./winston");
 
 const { Sequelize } = require("sequelize");
 
@@ -35,4 +35,5 @@ let connectDB = async () => {
     logger.info("Unable to connect to the database:", error);
   }
 };
-export default connectDB;
+
+module.exports = connectDB;
