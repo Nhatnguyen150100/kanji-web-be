@@ -11,6 +11,8 @@ dotenv.config();
 
 import connectDB from "./config/connectDB";
 import authRouter from "./routes/authRouter";
+import kanjiRouter from "./routes/kanjiROuter";
+import paramRouter from "./routes/paramRouter";
 const { default: loggerWinston } = require("./config/winston");
 
 connectDB.connect();
@@ -42,7 +44,9 @@ app.use(express.static(join(__dirname, "public")));
 /**
  * @toto router setup
  */
+app.use("/v1", paramRouter);
 app.use("/v1/auth", authRouter);
+app.use("/v1/kanji", kanjiRouter);
 
 app.listen(process.env.PORT || 3000, () => {
   loggerWinston.info("server listening on port: " + (process.env.PORT || 3000));

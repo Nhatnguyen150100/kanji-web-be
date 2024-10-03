@@ -1,3 +1,4 @@
+"use-strict";
 import authService from "../services/authService";
 
 const authMiddleware = {

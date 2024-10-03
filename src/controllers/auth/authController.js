@@ -1,3 +1,4 @@
+"use-strict";
 import logger from "../../config/winston";
 import authService from "../../services/authService";
 import tokenService from "../../services/token/tokenService";

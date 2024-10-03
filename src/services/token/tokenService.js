@@ -1,3 +1,4 @@
+"use-strict";
 import jwt from "jsonwebtoken";
 import path from "path";
 import fs from "fs";
@@ -14,7 +15,8 @@ const tokenService = {
       },
       privateKey,
       {
-        algorithm: "RS512",
+        expiresIn: "1d",
+        algorithm: "RS256",
       }
     );
   },
