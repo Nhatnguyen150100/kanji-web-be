@@ -11,7 +11,7 @@ dotenv.config();
 
 import connectDB from "./config/connectDB";
 import authRouter from "./routes/authRouter";
-import kanjiRouter from "./routes/kanjiROuter";
+import kanjiRouter from "./routes/kanjiRouter";
 import paramRouter from "./routes/paramRouter";
 const { default: loggerWinston } = require("./config/winston");
 
