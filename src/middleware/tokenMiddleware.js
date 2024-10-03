@@ -3,7 +3,7 @@ import tokenService from "../services/token/tokenService";
 
 const tokenMiddleware = {
   verifyToken: (req, res, next) => {
-    const token = req.headers.token;
+    const token = req.headers.authorization;
     if (!token) {
       return res.status(401).json({ message: "Token is required" });
     }

@@ -46,8 +46,6 @@ const kanjiController = {
     try {
       const { id } = req.params;
       const { level, meaning, mnemonic, reading } = req.body;
-      if (!(character && level))
-        res.status(400).json({ message: "character and level is required" });
       const { data, message } = await kanjiService.updateKanji(
         id,
         level,
@@ -55,8 +53,8 @@ const kanjiController = {
         mnemonic,
         reading
       );
-      if (!data) res.status(400).json({ message, data });
-      res.status(200).json({ message, data });
+      if (!data) res.status(400).json({ message });
+      res.status(200).json({ message });
     } catch (error) {
       res.status(500).json({ message: "server error" });
     }

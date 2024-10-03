@@ -101,7 +101,7 @@ const kanjiService = {
         );
         if (updatedKanji) {
           resolve({
-            data: updatedKanji,
+            data: true,
             message: "Kanji updated successfully",
           });
           return;
