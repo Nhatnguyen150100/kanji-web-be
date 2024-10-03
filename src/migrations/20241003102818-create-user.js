@@ -18,6 +18,18 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
       },
+      fullName: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.STRING
+      },
+      birthday: {
+        type: Sequelize.DATE
+      },
+      phoneNumber: {
+        type: Sequelize.STRING
+      },
       role: {
         type: Sequelize.STRING,
       },
