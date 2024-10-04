@@ -1,6 +1,7 @@
 "use-strict";
 import logger from "../config/winston";
 import db from "../models";
+import onRemoveParams from "../utils/remove-params";
 
 const kanjiService = {
   createKanji: (character, level, meaning, mnemonic, reading) => {
@@ -35,7 +36,7 @@ const kanjiService = {
   getListKanji: (page, limit, nameLike, level) => {
     return new Promise(async (resolve, reject) => {
       try {
-        let offset = (page - 1) * limit;
+        let offset = page && limit ? (page - 1) * limit : undefined;
         let query = {};
         if (nameLike) {
           query = {
@@ -45,15 +46,18 @@ const kanjiService = {
             level,
           };
         }
-        const [kanjis, totalCount] = await db.Kanji.findAndCountAll({
+        const option = onRemoveParams({
           where: query,
           limit,
           offset,
           order: [["createdAt", "ASC"]],
         });
+        const result = await db.Kanji.findAndCountAll(option);
+        const kanjis = result.rows;
+        const totalCount = result.count; 
         resolve({
           data: {
-            kanjis,
+            content: kanjis,
             totalCount,
           },
           message: "List of kanjis retrieved successfully",
