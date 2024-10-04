@@ -16,7 +16,7 @@ module.exports = {
       "Kanjis",
       [
         {
-          id: '9b7f4e1b-7e63-4cde-bb76-5d4d2c5d7f8b', // Tạo UUID mới
+          id: '9b7f4e1b-7e63-4cde-bb76-5d4d2c5d7f8b',
           character: "日",
           level: "N5",
           meaning: "Mặt trời, ngày",

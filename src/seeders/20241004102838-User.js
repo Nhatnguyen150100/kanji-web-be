@@ -16,7 +16,7 @@ module.exports = {
       "Users",
       [
         {
-          id: Sequelize.UUIDV4(),
+          id: 'd511aeab-f46d-408c-a29d-55ad1855651a',
           email: "user1@gmail.com",
           password: "password", // Đảm bảo bạn mã hóa mật khẩu nếu cần
           createdAt: new Date(),
