@@ -18,7 +18,7 @@ module.exports = {
         {
           id: 'd511aeab-f46d-408c-a29d-55ad1855651a',
           email: "user1@gmail.com",
-          password: "password", // Đảm bảo bạn mã hóa mật khẩu nếu cần
+          password: "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // password
           createdAt: new Date(),
           updatedAt: new Date(),
         },
