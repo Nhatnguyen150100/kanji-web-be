@@ -4,6 +4,12 @@
 npx sequelize-cli db:migrate
 ```
 
+## Seeder database
+
+```
+npx sequelize-cli db:seed:all
+```
+
 ### Migrate table Kanji
 
 ```
