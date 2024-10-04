@@ -21,6 +21,10 @@ const app = express();
 app.use(
   cors({
     origin: process.env.BASE_URL_CLIENT,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 200,
     allowedHeaders: ["Content-Type", "Authorization", "token"],
     exposedHeaders: ["X-Total-Count", "token"],
   })

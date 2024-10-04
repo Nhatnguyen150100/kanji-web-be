@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Kanji extends Model {
+  class ExampleKanji extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,14 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Kanji.hasMany(models.ExampleKanji, {
-        foreignKey: "idKanji",
-        sourceKey: "id",
-        as: 'exampleKanjis',
+      ExampleKanji.belongsTo(models.Kanji, {
+        foreignKey: { name: "idKanji", allowNull: false },
+        targetKey: "id",
       });
     }
   }
-  Kanji.init(
+  ExampleKanji.init(
     {
       id: {
         allowNull: false,
@@ -24,22 +23,16 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.UUID,
       },
-      character: {
+      idKanji: DataTypes.UUID,
+      example: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      level: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      meaning: DataTypes.TEXT,
-      mnemonic: DataTypes.TEXT,
-      reading: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Kanji",
+      modelName: "ExampleKanji",
     }
   );
-  return Kanji;
+  return ExampleKanji;
 };

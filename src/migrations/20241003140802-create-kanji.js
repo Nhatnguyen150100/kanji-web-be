@@ -35,6 +35,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+    await queryInterface.addIndex('Kanjis', ['character'], { name: 'idx_kanjis_character' });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Kanjis");

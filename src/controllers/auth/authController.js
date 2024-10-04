@@ -9,7 +9,7 @@ const authController = {
       const { email, password } = req.body;
       const { data, message } = await authService.login(email, password);
       if (!data) {
-        return res.status(401).json({ message });
+        return res.status(400).json({ message });
       }
       const accessToken = tokenService.generateToken(data);
       res.status(200).json({
