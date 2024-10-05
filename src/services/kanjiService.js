@@ -3,6 +3,7 @@ import logger from "../config/winston";
 import db from "../models";
 import groupAndMerge from "../utils/group-item";
 import onRemoveParams from "../utils/remove-params";
+import { Op } from "sequelize";
 
 const kanjiService = {
   createKanji: (
@@ -57,27 +58,45 @@ const kanjiService = {
         let query = {};
         if (nameLike) {
           query = {
-            character: {
-              [db.Sequelize.Op.like]: `%${nameLike}%`,
-            },
+            [Op.or]: [
+              {
+                character: {
+                  [Op.like]: `%${nameLike}%`,
+                },
+              },
+              {
+                meaning: {
+                  [Op.like]: `%${nameLike}%`,
+                },
+              },
+            ],
+          };
+        }
+        if (level) {
+          query = {
+            ...query,
             level,
           };
         }
-        const option = onRemoveParams({
-          include: [
-            {
-              model: db.ExampleKanji,
-              as: "exampleKanjis",
-              required: false,
-            },
-          ],
-          where: query,
-          limit,
-          offset,
-          order: [["createdAt", "ASC"]],
-          raw: true,
-          nest: true,
-        });
+        const option = onRemoveParams(
+          {
+            include: [
+              {
+                model: db.ExampleKanji,
+                as: "exampleKanjis",
+                required: false,
+              },
+            ],
+            where: query,
+            limit: Number(limit),
+            offset,
+            order: [["createdAt", "ASC"]],
+            raw: true,
+            nest: true,
+            logging: console.log,
+          },
+          [0]
+        );
         const result = await db.Kanji.findAndCountAll(option);
         const kanjis = result.rows;
         const totalCount = result.count;
@@ -90,6 +109,7 @@ const kanjiService = {
           message: "List of kanjis retrieved successfully",
         });
       } catch (error) {
+        console.log("🚀 ~ returnnewPromise ~ error:", error);
         logger.error(error);
         reject(error);
       }

@@ -4,7 +4,8 @@ import kanjiService from "../services/kanjiService";
 const kanjiController = {
   createKanji: async (req, res) => {
     try {
-      const { character, level, meaning, mnemonic, reading, exampleKanjis } = req.body;
+      const { character, level, meaning, mnemonic, reading, exampleKanjis } =
+        req.body;
       if (!(character && level))
         res.status(400).json({ message: "character and level is required" });
       const { data, message } = await kanjiService.createKanji(
@@ -22,7 +23,7 @@ const kanjiController = {
   },
   getListKanji: async (req, res) => {
     try {
-      const { page, limit, nameLike, level } = req.body;
+      const { page, limit, nameLike, level } = req.query;
       const { data, message } = await kanjiService.getListKanji(
         page,
         limit,

@@ -16,9 +16,11 @@ module.exports = {
       "Users",
       [
         {
-          id: 'd511aeab-f46d-408c-a29d-55ad1855651a',
+          id: "d511aeab-f46d-408c-a29d-55ad1855651a",
           email: "user1@gmail.com",
-          password: "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // password
+          role: "USER",
+          password:
+            "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // password
           createdAt: new Date(),
           updatedAt: new Date(),
         },
