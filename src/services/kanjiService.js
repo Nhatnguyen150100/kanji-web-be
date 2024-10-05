@@ -93,7 +93,7 @@ const kanjiService = {
             order: [["createdAt", "ASC"]],
             raw: true,
             nest: true,
-            logging: console.log,
+            distinct: true,
           },
           [0]
         );
@@ -109,7 +109,6 @@ const kanjiService = {
           message: "List of kanjis retrieved successfully",
         });
       } catch (error) {
-        console.log("🚀 ~ returnnewPromise ~ error:", error);
         logger.error(error);
         reject(error);
       }
@@ -118,8 +117,21 @@ const kanjiService = {
   getKanjiDetail: (kanjiId) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const kanji = await db.Kanji.findByPk(kanjiId);
-        if (!kanji) {
+        const kanji = await db.Kanji.findAll({
+          where: { id: kanjiId },
+          include: [
+            {
+              model: db.ExampleKanji,
+              as: "exampleKanjis",
+              required: false,
+            },
+          ],
+          order: [["createdAt", "ASC"]],
+          raw: true,
+          nest: true,
+        });
+        const groupedResults = groupAndMerge(kanji, "id", "exampleKanjis");
+        if (!groupedResults) {
           reject({
             data: null,
             message: "Kanji not found",
@@ -127,7 +139,7 @@ const kanjiService = {
           return;
         }
         resolve({
-          data: kanji,
+          data: groupedResults[0],
           message: "Kanji retrieved successfully",
         });
       } catch (error) {
