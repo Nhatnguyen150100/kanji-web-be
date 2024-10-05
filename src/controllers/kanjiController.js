@@ -47,13 +47,15 @@ const kanjiController = {
   updateKanji: async (req, res) => {
     try {
       const { id } = req.params;
-      const { level, meaning, mnemonic, reading } = req.body;
+      console.log("🚀 ~ updateKanji: ~ id:", id);
+      const { level, meaning, mnemonic, reading, exampleKanjis } = req.body;
       const { data, message } = await kanjiService.updateKanji(
         id,
         level,
         meaning,
         mnemonic,
-        reading
+        reading,
+        exampleKanjis
       );
       if (!data) res.status(400).json({ message });
       res.status(200).json({ message });

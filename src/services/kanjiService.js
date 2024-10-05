@@ -148,9 +148,20 @@ const kanjiService = {
       }
     });
   },
-  updateKanji: (kanjiId, level, meaning, mnemonic, reading) => {
+  updateKanji: (kanjiId, level, meaning, mnemonic, reading, exampleKanjis) => {
     return new Promise(async (resolve, reject) => {
       try {
+        await db.ExampleKanji.destroy({
+          where: { idKanji: kanjiId },
+        });
+        if (exampleKanjis.length > 0) {
+          await db.ExampleKanji.bulkCreate(
+            exampleKanjis.map((item) => ({
+              idKanji: kanjiId,
+              example: item,
+            }))
+          );
+        }
         const updatedKanji = await db.Kanji.update(
           {
             level,
