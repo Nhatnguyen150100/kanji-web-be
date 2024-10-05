@@ -16,11 +16,15 @@ kanjiRouter.get(
   kanjiController.getKanjiDetail
 );
 
-kanjiRouter.post("/", tokenMiddleware.verifyToken, kanjiController.createKanji);
+kanjiRouter.post(
+  "/",
+  tokenMiddleware.verifyTokenAdmin,
+  kanjiController.createKanji
+);
 
 kanjiRouter.put(
   "/:id",
-  tokenMiddleware.verifyToken,
+  tokenMiddleware.verifyTokenAdmin,
   kanjiController.updateKanji
 );
 
