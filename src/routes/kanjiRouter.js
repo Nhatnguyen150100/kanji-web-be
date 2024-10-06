@@ -28,4 +28,10 @@ kanjiRouter.put(
   kanjiController.updateKanji
 );
 
+kanjiRouter.delete(
+  "/:id",
+  tokenMiddleware.verifyTokenAdmin,
+  kanjiController.deleteKanji
+);
+
 export default kanjiRouter;

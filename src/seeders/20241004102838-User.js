@@ -20,7 +20,7 @@ module.exports = {
           email: "user1@gmail.com",
           role: "USER",
           password:
-            "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // password
+            "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // plain = password
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -29,7 +29,7 @@ module.exports = {
           email: "admin@gmail.com",
           role: "ADMIN",
           password:
-            "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // password
+            "$2b$10$6eXQVPv8SBbKvivehAXVWe/lotzezRfMWZ3oc82vfxHUYZnKp0gVG", // plain = password
           createdAt: new Date(),
           updatedAt: new Date(),
         },

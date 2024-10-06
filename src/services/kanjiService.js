@@ -10,18 +10,34 @@ const kanjiService = {
     character,
     level,
     meaning,
+    chinaMeaning,
     mnemonic,
-    reading,
+    onReading,
+    kunReading,
     exampleKanjis
   ) => {
     return new Promise(async (resolve, reject) => {
       try {
+        const existKanji = await db.Kanji.findOne({
+          where: {
+            character,
+          },
+        });
+        if (existKanji) {
+          resolve({
+            data: null,
+            message: "Kanji with the same character already exists",
+          });
+          return;
+        }
         const obj = {
           character,
           level,
           meaning,
+          chinaMeaning,
           mnemonic,
-          reading,
+          onReading,
+          kunReading,
         };
         const newKanji = await db.Kanji.create(obj);
         if (newKanji) {
@@ -66,6 +82,11 @@ const kanjiService = {
               },
               {
                 meaning: {
+                  [Op.like]: `%${nameLike}%`,
+                },
+              },
+              {
+                chinaMeaning: {
                   [Op.like]: `%${nameLike}%`,
                 },
               },
@@ -148,7 +169,16 @@ const kanjiService = {
       }
     });
   },
-  updateKanji: (kanjiId, level, meaning, mnemonic, reading, exampleKanjis) => {
+  updateKanji: (
+    kanjiId,
+    level,
+    meaning,
+    chinaMeaning,
+    mnemonic,
+    onReading,
+    kunReading,
+    exampleKanjis
+  ) => {
     return new Promise(async (resolve, reject) => {
       try {
         await db.ExampleKanji.destroy({
@@ -166,8 +196,10 @@ const kanjiService = {
           {
             level,
             meaning,
+            chinaMeaning,
             mnemonic,
-            reading,
+            onReading,
+            kunReading,
           },
           {
             where: { id: kanjiId },
@@ -185,6 +217,33 @@ const kanjiService = {
           message: "Failed to update kanji",
         });
       } catch (error) {
+        logger.error(error);
+        reject(error);
+      }
+    });
+  },
+  deleteKanji: (kanjiId) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await db.ExampleKanji.destroy({
+          where: { idKanji: kanjiId },
+        });
+        const deletedKanji = await db.Kanji.destroy({
+          where: { id: kanjiId },
+        });
+        if (deletedKanji) {
+          resolve({
+            data: true,
+            message: "Kanji deleted successfully",
+          });
+          return;
+        }
+        reject({
+          data: null,
+          message: "Failed to delete kanji",
+        });
+      } catch (error) {
+        console.log("🚀 ~ returnnewPromise ~ error:", error);
         logger.error(error);
         reject(error);
       }

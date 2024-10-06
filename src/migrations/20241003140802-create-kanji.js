@@ -20,10 +20,16 @@ module.exports = {
       meaning: {
         type: Sequelize.TEXT,
       },
+      chinaMeaning: {
+        type: Sequelize.TEXT,
+      },
       mnemonic: {
         type: Sequelize.TEXT,
       },
-      reading: {
+      onReading: {
+        type: Sequelize.STRING,
+      },
+      kunReading: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -35,7 +41,9 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    await queryInterface.addIndex('Kanjis', ['character'], { name: 'idx_kanjis_character' });
+    await queryInterface.addIndex("Kanjis", ["character"], {
+      name: "idx_kanjis_character",
+    });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Kanjis");

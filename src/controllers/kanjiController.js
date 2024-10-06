@@ -4,16 +4,26 @@ import kanjiService from "../services/kanjiService";
 const kanjiController = {
   createKanji: async (req, res) => {
     try {
-      const { character, level, meaning, mnemonic, reading, exampleKanjis } =
-        req.body;
+      const {
+        character,
+        level,
+        meaning,
+        chinaMeaning,
+        mnemonic,
+        onReading,
+        kunReading,
+        exampleKanjis,
+      } = req.body;
       if (!(character && level))
         res.status(400).json({ message: "character and level is required" });
       const { data, message } = await kanjiService.createKanji(
         character,
         level,
         meaning,
+        chinaMeaning,
         mnemonic,
-        reading,
+        onReading,
+        kunReading,
         exampleKanjis
       );
       res.status(200).json({ message, data });
@@ -47,16 +57,35 @@ const kanjiController = {
   updateKanji: async (req, res) => {
     try {
       const { id } = req.params;
-      console.log("🚀 ~ updateKanji: ~ id:", id);
-      const { level, meaning, mnemonic, reading, exampleKanjis } = req.body;
+      const {
+        level,
+        meaning,
+        chinaMeaning,
+        mnemonic,
+        onReading,
+        kunReading,
+        exampleKanjis,
+      } = req.body;
       const { data, message } = await kanjiService.updateKanji(
         id,
         level,
         meaning,
+        chinaMeaning,
         mnemonic,
-        reading,
+        onReading,
+        kunReading,
         exampleKanjis
       );
+      if (!data) res.status(400).json({ message });
+      res.status(200).json({ message });
+    } catch (error) {
+      res.status(500).json({ message: "server error" });
+    }
+  },
+  deleteKanji: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { data, message } = await kanjiService.deleteKanji(id);
       if (!data) res.status(400).json({ message });
       res.status(200).json({ message });
     } catch (error) {

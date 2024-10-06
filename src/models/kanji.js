@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Kanji.hasMany(models.ExampleKanji, {
         foreignKey: "idKanji",
         sourceKey: "id",
-        as: 'exampleKanjis',
+        as: "exampleKanjis",
       });
     }
   }
@@ -33,8 +33,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       meaning: DataTypes.TEXT,
+      chinaMeaning: DataTypes.TEXT,
       mnemonic: DataTypes.TEXT,
-      reading: DataTypes.STRING,
+      onReading: DataTypes.STRING,
+      kunReading: DataTypes.STRING,
     },
     {
       sequelize,
