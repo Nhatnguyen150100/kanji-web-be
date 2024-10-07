@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         type: DataTypes.UUID,
       },
-      username: DataTypes.STRING,
+      userName: DataTypes.STRING,
       password: DataTypes.STRING,
       fullName: DataTypes.STRING,
       gender: DataTypes.STRING,
-      birthday: DataTypes.DATE,
+      birthDay: DataTypes.DATE,
       phoneNumber: DataTypes.STRING,
       email: {
         type: DataTypes.STRING,

@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      username: {
+      userName: {
         allowNull: true,
         type: Sequelize.STRING,
       },
@@ -30,7 +30,7 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      birthday: {
+      birthDay: {
         allowNull: true,
         type: Sequelize.DATE,
       },

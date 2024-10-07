@@ -13,6 +13,7 @@ import connectDB from "./config/connectDB";
 import authRouter from "./routes/authRouter";
 import kanjiRouter from "./routes/kanjiRouter";
 import paramRouter from "./routes/paramRouter";
+import profileRouter from "./routes/profileRouter";
 const { default: loggerWinston } = require("./config/winston");
 
 connectDB.connect();
@@ -51,6 +52,7 @@ app.use(express.static(join(__dirname, "public")));
 app.use("/v1", paramRouter);
 app.use("/v1/auth", authRouter);
 app.use("/v1/kanji", kanjiRouter);
+app.use("/v1/profile", profileRouter);
 
 app.listen(process.env.PORT || 3000, () => {
   loggerWinston.info("server listening on port: " + (process.env.PORT || 3000));
