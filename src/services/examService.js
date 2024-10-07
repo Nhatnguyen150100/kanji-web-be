@@ -186,6 +186,7 @@ const examService = {
     return new Promise(async (resolve, reject) => {
       try {
         await db.Question.destroy({ where: { idExam: examId } });
+        await db.UserExam.destroy({ where: { idExam: examId } });
         const examDeleted = await db.Exam.destroy({ where: { id: examId } });
         if (examDeleted) {
           resolve({
