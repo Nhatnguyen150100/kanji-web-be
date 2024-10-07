@@ -5,7 +5,7 @@ import examController from "../controllers/examController";
 const examRouter = express.Router();
 
 examRouter.get(
-  "/list",
+  "/",
   tokenMiddleware.verifyToken,
   examController.getListExam
 );

@@ -52,7 +52,8 @@ const examController = {
   },
   getListExam: async (req, res) => {
     try {
-      const { data, message } = await examService.getListExam(req.body)
+      const { page, limit, nameLike, level } = req.query;
+      const { data, message } = await examService.getListExam(page, limit, nameLike, level)
       res.status(200).json({ message, data });
     } catch (error) {
       res.status(500).json({ message: "server error" });
