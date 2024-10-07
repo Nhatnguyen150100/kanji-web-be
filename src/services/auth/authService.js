@@ -1,8 +1,8 @@
 "use strict";
 import bcrypt from "bcrypt";
-import logger from "../config/winston";
-import db from "../models";
-import ROLE_DEFINE from "../constants/role";
+import logger from "../../config/winston";
+import db from "../../models";
+import ROLE_DEFINE from "../../constants/role";
 
 const authService = {
   login: (email, password) => {
@@ -11,6 +11,10 @@ const authService = {
         const user = await db.User.findOne({
           where: { email: email },
           raw: true,
+        });
+        await db.LoginLog.create({
+          logTime: new Date(),
+          idUser: user.id,
         });
         if (!user || Object.keys(user).length === 0) {
           resolve({

@@ -1,6 +1,6 @@
 "use-strict";
 import logger from "../../config/winston";
-import authService from "../../services/authService";
+import authService from "../../services/auth/authService";
 import tokenService from "../../services/token/tokenService";
 
 const authController = {

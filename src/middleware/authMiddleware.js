@@ -1,5 +1,5 @@
 "use-strict";
-import authService from "../services/authService";
+import authService from "../services/auth/authService";
 
 const authMiddleware = {
   checkUserExist: async (req, res, next) => {
