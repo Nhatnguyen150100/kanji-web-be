@@ -36,7 +36,7 @@ module.exports = {
       },
       phoneNumber: {
         allowNull: true,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       role: {
         allowNull: false,
