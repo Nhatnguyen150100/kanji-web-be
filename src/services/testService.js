@@ -62,7 +62,10 @@ const testService = {
         const totalCount = result.count;
         resolve({
           data: {
-            content: scoreObj,
+            content: scoreObj.map((item) => ({
+              ...item.exams,
+              score: item.score,
+            })),
             totalCount,
           },
           message: "List of score retrieved successfully",
