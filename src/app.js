@@ -14,7 +14,7 @@ import authRouter from "./routes/authRouter";
 import kanjiRouter from "./routes/kanjiRouter";
 import paramRouter from "./routes/paramRouter";
 import accountRouter from "./routes/accountRouter";
-import profileRouter from "./routes/accountRouter";
+import profileRouter from "./routes/profileRouter";
 import loginLogRouter from "./routes/loginLogRouter";
 import examRouter from "./routes/examRouter";
 import testRouter from "./routes/testRouter";
