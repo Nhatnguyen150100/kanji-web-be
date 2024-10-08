@@ -224,9 +224,6 @@ const kanjiService = {
   deleteKanji: (kanjiId) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await db.ExampleKanji.destroy({
-          where: { idKanji: kanjiId },
-        });
         const deletedKanji = await db.Kanji.destroy({
           where: { id: kanjiId },
         });

@@ -12,7 +12,7 @@ const authService = {
           where: { email: email },
           raw: true,
         });
-        if (user.role === "USER") {
+        if (user?.role === "USER") {
           await db.LoginLog.create({
             logTime: new Date(),
             idUser: user.id,

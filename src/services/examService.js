@@ -76,15 +76,17 @@ const examService = {
           resolve({
             data: {
               ...finalExam,
-              questions: finalExam.questions.map((question) => ({
-                id: question.id,
-                content: question.content,
-                options: question.options.split("|"),
-                correctAnswer: question.correctAnswer,
-                order: question.order,
-                createdAt: question.createdAt,
-                updatedAt: question.updatedAt,
-              })).sort((a, b) => a.order - b.order)
+              questions: finalExam.questions
+                .map((question) => ({
+                  id: question.id,
+                  content: question.content,
+                  options: question.options.split("|"),
+                  correctAnswer: question.correctAnswer,
+                  order: question.order,
+                  createdAt: question.createdAt,
+                  updatedAt: question.updatedAt,
+                }))
+                .sort((a, b) => a.order - b.order),
             },
             message: "Exam found successfully",
           });
@@ -185,8 +187,6 @@ const examService = {
   deleteExam: (examId) => {
     return new Promise(async (resolve, reject) => {
       try {
-        await db.Question.destroy({ where: { idExam: examId } });
-        await db.UserExam.destroy({ where: { idExam: examId } });
         const examDeleted = await db.Exam.destroy({ where: { id: examId } });
         if (examDeleted) {
           resolve({

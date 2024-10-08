@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ExampleKanjis', {
+    await queryInterface.createTable("ExampleKanjis", {
       id: {
         allowNull: false,
         defaultValue: Sequelize.UUIDV4,
@@ -11,6 +11,7 @@ module.exports = {
       },
       idKanji: {
         type: Sequelize.UUID,
+        onDelete: "CASCADE",
         references: {
           model: {
             tableName: "Kanjis",
@@ -20,19 +21,19 @@ module.exports = {
         },
       },
       example: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ExampleKanjis');
-  }
+    await queryInterface.dropTable("ExampleKanjis");
+  },
 };

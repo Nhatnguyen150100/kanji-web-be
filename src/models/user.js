@@ -12,11 +12,15 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.LoginLog, {
         foreignKey: "idUser",
         sourceKey: "id",
+        onDelete: "CASCADE",
+        hooks: true,
       });
       User.hasMany(models.UserExam, {
         foreignKey: "idUser",
         sourceKey: "id",
         as: "userExams",
+        onDelete: "CASCADE",
+        hooks: true,
       });
     }
   }

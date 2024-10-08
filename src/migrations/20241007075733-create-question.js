@@ -11,6 +11,7 @@ module.exports = {
       },
       idExam: {
         type: Sequelize.UUID,
+        onDelete: "CASCADE",
         references: {
           model: {
             tableName: "Exams",

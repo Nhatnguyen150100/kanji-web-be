@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "idKanji",
         sourceKey: "id",
         as: "exampleKanjis",
+        onDelete: "CASCADE",
+        hooks: true,
       });
     }
   }

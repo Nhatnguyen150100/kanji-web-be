@@ -13,10 +13,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "idExam",
         sourceKey: "id",
         as: "questions",
+        onDelete: "CASCADE",
+        hooks: true,
       });
       Exam.hasMany(models.UserExam, {
         foreignKey: "idExam",
         sourceKey: "id",
+        onDelete: "CASCADE",
+        hooks: true,
       });
     }
   }

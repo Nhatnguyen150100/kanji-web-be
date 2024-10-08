@@ -7,7 +7,6 @@ import DEFINE_LEVEL from "../constants/kanji";
 
 const testService = {
   saveScoreTest: (idUser, idExam, score) => {
-    console.log("🚀 ~ idUser, idExam, score:", idUser, idExam, score);
     return new Promise(async (resolve, reject) => {
       try {
         const userExam = await db.UserExam.create({
@@ -98,7 +97,7 @@ const testService = {
           },
           raw: true,
           nest: true,
-          group: ["exams.level"],
+          group: ["idExam", "exams.level"],
         });
 
         const resultsLevel = await db.Exam.findAll({
@@ -114,7 +113,7 @@ const testService = {
           level: level,
           count:
             results.find((result) => result.exams.level === level)?.count ?? 0,
-          total: resultsLevel.find((item) => item.level === level)?.count ?? 0,
+          total: resultsLevel?.find((item) => item.level === level)?.count ?? 0,
         }));
         resolve({
           data: finalResult,
