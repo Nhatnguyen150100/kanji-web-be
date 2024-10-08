@@ -17,6 +17,7 @@ import accountRouter from "./routes/accountRouter";
 import profileRouter from "./routes/accountRouter";
 import loginLogRouter from "./routes/loginLogRouter";
 import examRouter from "./routes/examRouter";
+import testRouter from "./routes/testRouter";
 const { default: loggerWinston } = require("./config/winston");
 
 connectDB.connect();
@@ -59,6 +60,7 @@ app.use("/v1/profile", profileRouter);
 app.use("/v1/account", accountRouter);
 app.use("/v1/login-log", loginLogRouter);
 app.use("/v1/exam", examRouter);
+app.use("/v1/test", testRouter);
 
 app.listen(process.env.PORT || 3000, () => {
   loggerWinston.info("server listening on port: " + (process.env.PORT || 3000));

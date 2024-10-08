@@ -61,7 +61,6 @@ const kanjiService = {
           message: "Failed to create kanji",
         });
       } catch (error) {
-        console.log(error);
         logger.error(error);
         reject(error);
       }
@@ -243,7 +242,6 @@ const kanjiService = {
           message: "Failed to delete kanji",
         });
       } catch (error) {
-        console.log("🚀 ~ returnnewPromise ~ error:", error);
         logger.error(error);
         reject(error);
       }

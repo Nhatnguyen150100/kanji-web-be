@@ -49,7 +49,6 @@ const profileService = {
           message: "Failed to update profile",
         });
       } catch (error) {
-        console.log("🚀 ~ returnnewPromise ~ error:", error)
         logger.error(error);
         reject(error);
       }

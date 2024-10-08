@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       UserExam.belongsTo(models.Exam, {
         foreignKey: { name: "idExam", allowNull: false },
         targetKey: "id",
+        as: 'exams'
       });
     }
   }

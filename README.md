@@ -1,3 +1,5 @@
+## Chú ý trước khi migrate DB cần config lại cấu hình DB trong file src/config/config.js
+
 ## Move to src of source directory
 
 cd src
