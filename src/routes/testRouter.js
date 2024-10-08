@@ -16,6 +16,12 @@ testRouter.get(
   testController.getAllScoresTest
 );
 
+testRouter.get(
+  "/process/:id",
+  tokenMiddleware.verifyToken,
+  testController.getProcess
+);
+
 testRouter.post("/", tokenMiddleware.verifyToken, testController.saveScoreTest);
 
 export default testRouter;
