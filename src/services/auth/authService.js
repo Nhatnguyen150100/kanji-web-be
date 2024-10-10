@@ -5,17 +5,12 @@ import db from "../../models";
 import ROLE_DEFINE from "../../constants/role";
 import nodemailer from "nodemailer";
 import tokenService from "../token/tokenService";
-import { where } from "sequelize";
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
-  secure: false,
+  host: 'smtp.gmail.com',
   auth: {
-    // user: process.env.EMAIL_USER,
-    // pass: process.env.EMAIL_PASS,
-    user: 'maddison53@ethereal.email',
-    pass: 'jn7jnAPss4f63QBp6D',
+    user: "dinhphamcanh@gmail.com",
+    pass: 'snakdstfuhtjgagd',
   },
 });
 
@@ -114,15 +109,13 @@ const authService = {
           });
         }
         const token = tokenService.generateToken(user);
-        console.log("🚀 ~ returnnewPromise ~ token:", token)
-        console.log("🚀 ~ email:", email)
         const info = await transporter.sendMail({
           from: `"Kanji web 👻" <${process.env.EMAIL_USER}>`,
           to: email,
-          subject: "Password Reset",
-          html: `<a href="${process.env.BASE_URL_CLIENT}/reset-password/${token}">Reset Password</a>`,
+          subject: "Reset your password",
+          html: `<a href="${process.env.BASE_URL_CLIENT}/auth/reset-password/${token}">Click here to reset your password</a>`,
         });
-        console.log("🚀 ~ returnnewPromise ~ info:", info)
+        console.log("🚀 ~ returnnewPromise ~ info:", info);
         resolve({
           message: "Please check email to reset your password",
         });
