@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 import DEFINE_LEVEL from "../constants/kanji";
 import ROLE_DEFINE from "../constants/role";
 

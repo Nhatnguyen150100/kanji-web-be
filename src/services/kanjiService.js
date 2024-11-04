@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 import logger from "../config/winston";
 import db from "../models";
 import groupAndMerge from "../utils/group-item";

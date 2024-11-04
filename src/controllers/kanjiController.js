@@ -1,4 +1,4 @@
-"use-strict";
+"use strict";
 import kanjiService from "../services/kanjiService";
 
 const kanjiController = {
