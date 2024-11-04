@@ -1,3 +1,6 @@
+/**
+ * @author Nhatnguyen150100 <nhatnguyen150100@gmail.com>
+ */
 const express = require("express");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
